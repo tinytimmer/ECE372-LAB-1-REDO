@@ -17,14 +17,14 @@ int main(){
       initLED();
       initSwitch();
 
-      unsigned int led = 4;
+      unsigned int led = 2;
       unsigned int delay = SHORT_DELAY;
 
   while(1){
     //turnOnLED( 1 );
 
-   //runs the function that turns on the LEDs
-    runLED(led);
+   //runs the function that turns on the LEDs and starts the sequence
+   runLED(led);
     _delay_ms(delay);
 
     //check for the switch being pressed here
@@ -33,10 +33,10 @@ int main(){
         delay = LONG_DELAY; //slows down the rate the sequences turns on the LEDS, pattern should not change
       }
     else {
-        delay = SHORT_DELAY;
+        delay = SHORT_DELAY; //resumes original rate
       }
     
-    //next will make the LED pattern go back to the beginning by going backwards when it reaches the innermost LEDs
+    //next will make the LED pattern go back to the beginning by going backwards when it reaches the innermost LEDs towards the outermost LED
     if (led == 10)
       {
         for (unsigned int i = 10; i >= 2; i -= 2)
@@ -47,7 +47,7 @@ int main(){
             _delay_ms(delay);
         }
       }
-    //otherwise it should return to the original pattern once it gets to the outermost LEDs
+    //otherwise it should return to the original pattern once it gets to the outermost LEDs and it begins the cycle again
     else if (led == 2)
       {
         for (unsigned int i = 2; i <= 10; i += 2)
@@ -59,14 +59,16 @@ int main(){
         }
       }
 
-  //this section will move to the next pair of LEDS in sequence
+  //this section will move to the next pair of LEDS in sequence ( i think but im not sure based on the error Im getting now)
   led += 2;
-  if (led >10)
+  if (led > 10)
     {
       led = 2;
-    }
+    } 
 
   }
 
   return 0;
 }
+
+

@@ -18,8 +18,12 @@ Note to self: base on lecture will use bit operations to change which LED is on 
 void initLED(){
   DDRG |= (1 << DDG5); //pin 4
   DDRE |= (1 << DDE3); //pin 5
-  DDRH |= (1 << DDH3, DDH4, DDH5, DDH6); //(in hexidecimal) this will set all the pins from pin 6-9 as output pins where the LEDs are at. 
-  DDRB |= (1 << DDB4, DDB5); //PIN 10 & 11
+  DDRH |= (1 << DDH3); //(in hexidecimal) this will set all the pins from pin 6-9 as output pins where the LEDs are at. 
+  DDRH |= (1 << DDH4);
+  DDRH |= (1 << DDH5);
+  DDRH |= (1 << DDH6);
+  DDRB |= (1 << DDB4);  //PIN 10 & 11
+  DDRB |= (1 << DDB5);
   //PORTG = 0x00; //sets all the LED's inital values to low, bascially off for pins 4-11. Recall: Value 0x00 will turn them OFF, 0xFF will turn them ON
   
 }
@@ -28,16 +32,24 @@ void initLED(){
 void turnOnLED(unsigned int led){
   PORTG |= (1 << PORTG5); //will let the corressponding LED pin to high aka ON
   PORTE |= (1 << PORTE3); 
-  PORTH |= (1 << PORTH3, PORTH4, PORTH5, PORTH6);
-  PORTB |= (1 << PORTB4, PORTB5);
+  PORTH |= (1 << PORTH3); 
+  PORTH |= (1 << PORTH4);
+  PORTH |= (1 << PORTH5); 
+  PORTH |= (1 << PORTH6);
+  PORTB |= (1 << PORTB4);
+  PORTB |= (1 << PORTB5);
 }
 
 // turnOffLED which returns void and takes in an unsigned int parameter called led
 void turnOffLED(unsigned int led){
   PORTG &= ~(1 << PORTG5); //turns OFF the corressponding LED aka sets the pin back down to low
   PORTE &= ~(1 << PORTE3); 
-  PORTH &= ~(1 << PORTH3, PORTH4, PORTH5, PORTH6);
-  PORTB &= ~(1 << PORTB4, PORTB5);
+  PORTH &= ~(1 << PORTH3); 
+  PORTH &= ~(1 << PORTH4);
+  PORTH &= ~(1 << PORTH5);
+  PORTH &= ~(1 << PORTH6);
+  PORTB &= ~(1 << PORTB4); 
+  PORTB &= ~(1 << PORTB5);
 }
 
 // runLED which returns void and takes in an unsigned int parameter called led
