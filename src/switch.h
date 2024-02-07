@@ -9,7 +9,7 @@
 /*
 note to self: 
     this switch should creete two differnet conditions: 1)Slo-mo LED when pressed and hold OR 2) normal LED speed when released
-    test
+    test 2
 */
 
 // initSwitch returns void and takes no parameters
