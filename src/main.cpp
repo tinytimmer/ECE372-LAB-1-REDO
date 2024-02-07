@@ -21,52 +21,69 @@ int main(){
       unsigned int delay = SHORT_DELAY;
 
   while(1){
-    //turnOnLED( 1 );
+    /*turnOnLED();
+    _delay_ms(LONG_DELAY);
+    turnOffLED();
+    _delay_ms(SHORT_DELAY);*/
+    //runLED(led); // update LED
+       /*  if (isSwitchedPressed()) { // if switch is pressed, slow down blinking
+            
+        } else {
+           
+        } */
+      runLED(led);
+      _delay_ms(delay);
 
-   //runs the function that turns on the LEDs and starts the sequence
-   runLED(led);
-    _delay_ms(delay);
+      //check for the switch being pressed here
+      if (isSwitchedPressed())
+        {
+          delay = LONG_DELAY;//slows down the rate the sequences turns on the LEDS, pattern should not change
+        }
+      else {
+          delay = SHORT_DELAY; //resumes original rate
+        }
+      
+      //next will make the LED pattern go back to the beginning by going backwards when it reaches the innermost LEDs towards the outermost LED
+      if (led == 10)
+        {
+          for (unsigned int i = 10; i >= 2; i -= 2)
+          {
+            runLED(i);
+              _delay_ms(delay);
+            runLED(i - 1);
+              _delay_ms(delay);
+          }
+        }
+      //otherwise it should return to the original pattern once it gets to the outermost LEDs and it begins the cycle again
+      else if (led == 2) //back to normal blinking speed and sequence
+        {
+          for (unsigned int i = 2; i <= 10; i += 2)
+          {
+            runLED(i);
+              _delay_ms(delay);
+            runLED(i + 1);
+              _delay_ms(delay);
+          }
+        }
 
-    //check for the switch being pressed here
-    if (isSwitchedPressed())
+    //this section will move to the next pair of LEDS in sequence ( i think but im not sure based on the error Im getting now)
+    led += 2;
+    if (led > 10)
       {
-        delay = LONG_DELAY; //slows down the rate the sequences turns on the LEDS, pattern should not change
-      }
-    else {
-        delay = SHORT_DELAY; //resumes original rate
-      }
+        led = 2;
+      }  
     
-    //next will make the LED pattern go back to the beginning by going backwards when it reaches the innermost LEDs towards the outermost LED
-    if (led == 10)
-      {
-        for (unsigned int i = 10; i >= 2; i -= 2)
+    /*   runLED(led);
+      if(isSwitchedPressed())
         {
-          runLED(i);
-            _delay_ms(delay);
-          runLED(i + 1);
-            _delay_ms(delay);
+          _delay_ms(LONG_DELAY); //if switch is pressed and held down, slow blinking sequence starts
         }
-      }
-    //otherwise it should return to the original pattern once it gets to the outermost LEDs and it begins the cycle again
-    else if (led == 2)
-      {
-        for (unsigned int i = 2; i <= 10; i += 2)
+      else 
         {
-          runLED(i);
-            _delay_ms(delay);
-          runLED(i + 1);
-            _delay_ms(delay);
-        }
-      }
+          _delay_ms(SHORT_DELAY); //otherwise it should return to the normal speed
+        } */
 
-  //this section will move to the next pair of LEDS in sequence ( i think but im not sure based on the error Im getting now)
-  led += 2;
-  if (led > 10)
-    {
-      led = 2;
-    } 
-
-  }
+  } 
 
   return 0;
 }

@@ -29,7 +29,7 @@ void initLED(){
 }
 
 // turnOnLED which returns void and takes in an unsigned int parameter called led
-void turnOnLED(unsigned int led){
+void turnOnLED(){
   PORTG |= (1 << PORTG5); //will let the corressponding LED pin to high aka ON
   PORTE |= (1 << PORTE3); 
   PORTH |= (1 << PORTH3); 
@@ -41,7 +41,7 @@ void turnOnLED(unsigned int led){
 }
 
 // turnOffLED which returns void and takes in an unsigned int parameter called led
-void turnOffLED(unsigned int led){
+void turnOffLED(){
   PORTG &= ~(1 << PORTG5); //turns OFF the corressponding LED aka sets the pin back down to low
   PORTE &= ~(1 << PORTE3); 
   PORTH &= ~(1 << PORTH3); 
@@ -53,19 +53,20 @@ void turnOffLED(unsigned int led){
 }
 
 // runLED which returns void and takes in an unsigned int parameter called led
-void runLED(unsigned int led){
+ void runLED(unsigned int led){
   turnOffLED(led - 1); //will turn OFF the last LED using the function above
   turnOnLED(led); //like the function name says it will turn on the current LED
 
   //to get the sequence to start from the beginning this if-else statement will (hopefully) do so
-  if(led == 11){
+  //UPDATE: decided to put a similar sectino of code in main.cpp to run the sequence and keep track of it
+  /* if(led == 11){ //check why this aint working, this is set for 10 LED not 8 LED
+    turnOffLED();
     _delay_ms(100); //waits for 100ms
-    turnOffLED(led);
-    turnOnLED(4); //after turning off the last LED, this will turn on the first LED
+    turnOnLED(); //after turning off the last LED, this will turn on the first LED
     led = 4; //time to reset the LED counter
   }
   else { //as long as its not he last LED, it will increase counter and continue to move forward with sequence
     _delay_ms(100);
     led++;
-  }
+  }  */
 }
