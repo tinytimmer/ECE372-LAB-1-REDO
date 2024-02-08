@@ -56,21 +56,23 @@ void turnOffLED(){
 
 // runLED which returns void and takes in an unsigned int parameter called led
  void runLED(unsigned int led){
+  turnOnLED();  //like the function name says it will turn on the current LED
+   _delay_ms(100); //wait a bit
   turnOffLED();//will turn OFF the last LED using the function above
-  _delay_ms(100); //wait a bit
-  turnOnLED(); //like the function name says it will turn on the current LED
-  
+ 
   
   //to get the sequence to start from the beginning this if-else statement will (hopefully) do so
   //UPDATE: decided to put a similar sectino of code in main.cpp to run the sequence and keep track of it
-  /* if(led == 10){ //check why this aint working, this is set for 10 LED not 8 LED
+  if(led == 8){ //check why this aint working, this is set for 10 LED not 8 LED
     turnOffLED();
     _delay_ms(100); //waits for 100ms
     turnOnLED(); //after turning off the last LED, this will turn on the first LED
-    led = 4; //time to reset the LED counter
+    led = 2; //time to reset the LED counter
   }
   else { //as long as its not he last LED, it will increase counter and continue to move forward with sequence
+    turnOffLED();
     _delay_ms(100);
+    turnOnLED();
     led++;
-  }   */
+  } 
 }
