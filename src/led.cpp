@@ -7,6 +7,7 @@
 #include <util/delay.h>
 #include "led.h"
 
+
 /*
 Note to self: base on lecture will use bit operations to change which LED is on or odd based on
     the pin its connected to. This is specific to the board were using in this class.
@@ -27,6 +28,7 @@ void initLED(){
   //PORTG = 0x00; //sets all the LED's inital values to low, bascially off for pins 4-11. Recall: Value 0x00 will turn them OFF, 0xFF will turn them ON
   
 }
+
 
 // turnOnLED which returns void and takes in an unsigned int parameter called led
 void turnOnLED(){
@@ -54,12 +56,14 @@ void turnOffLED(){
 
 // runLED which returns void and takes in an unsigned int parameter called led
  void runLED(unsigned int led){
-  turnOffLED(led - 1); //will turn OFF the last LED using the function above
-  turnOnLED(led); //like the function name says it will turn on the current LED
-
+  turnOffLED();//will turn OFF the last LED using the function above
+  _delay_ms(100); //wait a bit
+  turnOnLED(); //like the function name says it will turn on the current LED
+  
+  
   //to get the sequence to start from the beginning this if-else statement will (hopefully) do so
   //UPDATE: decided to put a similar sectino of code in main.cpp to run the sequence and keep track of it
-  /* if(led == 11){ //check why this aint working, this is set for 10 LED not 8 LED
+  /* if(led == 10){ //check why this aint working, this is set for 10 LED not 8 LED
     turnOffLED();
     _delay_ms(100); //waits for 100ms
     turnOnLED(); //after turning off the last LED, this will turn on the first LED
@@ -68,5 +72,5 @@ void turnOffLED(){
   else { //as long as its not he last LED, it will increase counter and continue to move forward with sequence
     _delay_ms(100);
     led++;
-  }  */
+  }   */
 }
