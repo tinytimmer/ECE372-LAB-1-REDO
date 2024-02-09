@@ -16,12 +16,12 @@ note to self: every component must have a '.h' file
 void initLED();
 
 // turnOnLED which returns void and takes in an unsigned int parameter called led
-void turnOnLED();
+void turnOnLED(unsigned int led);
 
 // turnOffLED which returns void and takes in an unsigned int parameter called led
-void turnOffLED();
+void turnOffLED(unsigned int led);
 
 // runLED which returns void and takes in an unsigned int parameter called led
-void runLED(unsigned int led);
+void runLED();
 
 #endif
