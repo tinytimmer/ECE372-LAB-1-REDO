@@ -6,6 +6,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 #include "led.h"
+#include "switch.h"
 
 
 /*
@@ -99,6 +100,7 @@ if (led == !(PINA & (1 << PA0))) //to stay in the short delay
   turnOnLED(0);  //like the function name says it will turn on the current LED
   _delay_ms(100); //wait a bit
    turnOffLED();//will turn OFF the last LED using the function above
+   //isSwitchedPressed();
     
   turnOnLED(1); 
   _delay_ms(100); //wait a bit
