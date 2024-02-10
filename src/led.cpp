@@ -33,108 +33,130 @@ void initLED(){
 // turnOnLED which returns void and takes in an unsigned int parameter called led
 void turnOnLED(unsigned int led){
  //will let the corressponding LED pin to high aka ON 
+ /*  PORTG |= (1 << PORTG5); 
+  PORTE |= (1 << PORTE3); 
+  PORTH |= (1 << PORTH3); 
+  PORTH |= (1 << PORTH4);
+  PORTH |= (1 << PORTH5);
+  PORTH |= (1 << PORTH6);
+  PORTB |= (1 << PORTB4); 
+  PORTB |= (1 << PORTB5);  */ 
+ 
+ 
  if (led == 0) //pin 4 & 11
   {
+    //_delay_ms(100);
     PORTG |= (1 << PORTG5);
     PORTB |= (1 << PORTB5);
+    //_delay_ms(100); 
   }
   if (led == 1) //pin 5 & 10
   {
+    //_delay_ms(100);
     PORTE |= (1 << PORTE3);
     PORTB |= (1 << PORTB4);
+    //_delay_ms(100); 
   }
   if (led == 2) //pin 6 & 9
   {
+    //_delay_ms(100);
     PORTH |= (1 << PORTH3); 
     PORTH |= (1 << PORTH6);
+    //_delay_ms(100); 
   }
   if (led == 3) //pin 7 & 8
   {
+    //_delay_ms(100);
     PORTH |= (1 << PORTH4);
-    PORTH |= (1 << PORTH5); 
-  }  
+    PORTH |= (1 << PORTH5);
+    //_delay_ms(100);  
+  }    
 
 }
 
 // turnOffLED which returns void and takes in an unsigned int parameter called led
-void turnOffLED(unsigned int led){
+void turnOffLED(){
   //turns OFF the corressponding LED aka sets the pin back down to low
-  if (led == 0) //pin 5 - 10 are off
-  {
-    PORTE &= ~(1 << PORTE3); 
-    PORTH &= ~(1 << PORTH3); 
-    PORTH &= ~(1 << PORTH4);
-    PORTH &= ~(1 << PORTH5);
-    PORTH &= ~(1 << PORTH6);
-    PORTB &= ~(1 << PORTB4); 
-  }
-  if (led == 1) //pin 4, 6, 7, 8, 9, 11 off
-  {
-    PORTG &= ~(1 << PORTG5); 
-    PORTH &= ~(1 << PORTH3); 
-    PORTH &= ~(1 << PORTH4);
-    PORTH &= ~(1 << PORTH5);
-    PORTH &= ~(1 << PORTH6);
-    PORTB &= ~(1 << PORTB5); 
-  }
-  if (led == 2) //pin 4, 5, 7, 8, 10 ,11 off
-  {
-    PORTG &= ~(1 << PORTG5);
-    PORTE &= ~(1 << PORTE3); 
-    PORTH &= ~(1 << PORTH4);
-    PORTH &= ~(1 << PORTH5);
-    PORTB &= ~(1 << PORTB4); 
-    PORTB &= ~(1 << PORTB5);
-  }
-  if (led == 3) //pin 4, 5, 6, 9, 10, 11 off
-  {
-    PORTG &= ~(1 << PORTG5); 
-    PORTE &= ~(1 << PORTE3); 
-    PORTH &= ~(1 << PORTH3); 
-    PORTH &= ~(1 << PORTH6);
-    PORTB &= ~(1 << PORTB4); 
-    PORTB &= ~(1 << PORTB5); 
-  }
-
-  /* PORTG &= ~(1 << PORTG5); 
+  PORTG &= ~(1 << PORTG5); 
   PORTE &= ~(1 << PORTE3); 
   PORTH &= ~(1 << PORTH3); 
   PORTH &= ~(1 << PORTH4);
   PORTH &= ~(1 << PORTH5);
   PORTH &= ~(1 << PORTH6);
   PORTB &= ~(1 << PORTB4); 
-  PORTB &= ~(1 << PORTB5); */
+  PORTB &= ~(1 << PORTB5); 
+  
+  
 }
 
 // runLED which returns void and takes in an unsigned int parameter called led
- void runLED(){
-      turnOnLED(0);  //like the function name says it will turn on the current LED
-      //_delay_ms(100); //wait a bit
-      turnOffLED(0);//will turn OFF the last LED using the function above
+ void runLED(unsigned int led){
+    /* turnOnLED();
+    _delay_ms(100);
+    turnOffLED(); */
+if (led == !(PINA & (1 << PA0))) //to stay in the short delay
+{
+  turnOnLED(0);  //like the function name says it will turn on the current LED
+  _delay_ms(100); //wait a bit
+   turnOffLED();//will turn OFF the last LED using the function above
     
-      turnOnLED(1); 
-      //_delay_ms(100); //wait a bit
-      turnOffLED(1);
+  turnOnLED(1); 
+  _delay_ms(100); //wait a bit
+  turnOffLED();
 
-      turnOnLED(2);  
-      //_delay_ms(100); //wait a bit
-      turnOffLED(2);
+  turnOnLED(2);  
+  _delay_ms(100); //wait a bit
+  turnOffLED();
 
-      turnOnLED(3);  
-      //_delay_ms(100); //wait a bit
-      turnOffLED(3);
+  turnOnLED(3);  
+  _delay_ms(100); //wait a bit
+  turnOffLED();
 
-      turnOnLED(2);  
-      //_delay_ms(100); //wait a bit
-      turnOffLED(2);
+  turnOnLED(2);  
+  _delay_ms(100); //wait a bit
+  turnOffLED();
 
-      turnOnLED(1);  
-      //_delay_ms(100); //wait a bit
-      turnOffLED(1);
+  turnOnLED(1);  
+  _delay_ms(100); //wait a bit
+  turnOffLED();
 
-      turnOnLED(0);  
-      //_delay_ms(100); //wait a bit
-      turnOffLED(0);
+  turnOnLED(0);  
+  _delay_ms(100); //wait a bit
+  turnOffLED();
+}
+if (led == (PINA & (1 << PA0))) //to activate the long delay
+{
+  turnOnLED(0);  //like the function name says it will turn on the current LED
+  _delay_ms(1000); //wait a bit
+   turnOffLED();//will turn OFF the last LED using the function above
+    
+  turnOnLED(1); 
+  _delay_ms(1000); //wait a bit
+  turnOffLED();
+
+  turnOnLED(2);  
+  _delay_ms(1000); //wait a bit
+  turnOffLED();
+
+  turnOnLED(3);  
+  _delay_ms(1000); //wait a bit
+  turnOffLED();
+
+  turnOnLED(2);  
+  _delay_ms(1000); //wait a bit
+  turnOffLED();
+
+  turnOnLED(1);  
+  _delay_ms(1000); //wait a bit
+  turnOffLED();
+
+  turnOnLED(0);  
+  _delay_ms(1000); //wait a bit
+  turnOffLED();
+}
+
+
+      
   //to get the sequence to start from the beginning this if-else statement will (hopefully) do so
   //UPDATE: decided to put a similar sectino of code in main.cpp to run the sequence and keep track of it
   /* if(led == 8){ //check why this aint working, this is set for 10 LED not 8 LED

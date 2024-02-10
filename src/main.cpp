@@ -16,18 +16,18 @@ int main(){
   //call the functions for LED and switch/button, also will set up the delay and the LED we'll start with
       initLED();
       initSwitch();
+      unsigned int led;
+      //Serial.begin(9600);
       //unsigned int switch_pressed;
 
   while(1){
-     
+     runLED(led); // update LED
         if (isSwitchedPressed()) { // if switch is pressed, slow down blinking
-            runLED(); // update LED
             _delay_ms(LONG_DELAY);
             
         } else {
-           runLED(); // update LED 
            _delay_ms(SHORT_DELAY);
-            
+            //runLED(led); // update LED 
         }   
     //IGNORE THE BOTTOM COMMENTS, these are previous versions of code where I tried to make the pattern work but to no avail
     /*turnOnLED();

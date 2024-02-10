@@ -19,9 +19,9 @@ void initLED();
 void turnOnLED(unsigned int led);
 
 // turnOffLED which returns void and takes in an unsigned int parameter called led
-void turnOffLED(unsigned int led);
+void turnOffLED();
 
 // runLED which returns void and takes in an unsigned int parameter called led
-void runLED();
+void runLED(unsigned int led);
 
 #endif
